@@ -4,15 +4,37 @@
     <groupId>com.minilm.lite</groupId>
     <artifactId>minilm-lite</artifactId>
     <version>1.0.0</version>
+    <packaging>jar</packaging>
     <name>minilm-lite</name>
     <description>A lightweight library for generating embeddings using the all-MiniLM-L6-v2 model.</description>
+    <url>https://github.com/FranklinRuiz/minilm-lite</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>FranklinRuiz</id>
+            <name>Franklin Ruiz Asto Leon</name>
+            <email>franklin.asto.leon@gmail.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/FranklinRuiz/minilm-lite.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/FranklinRuiz/minilm-lite.git</developerConnection>
+        <url>https://github.com/FranklinRuiz/minilm-lite</url>
+    </scm>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <file.encoding>UTF-8</file.encoding>
     </properties>
 
     <dependencies>
@@ -50,4 +72,24 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
