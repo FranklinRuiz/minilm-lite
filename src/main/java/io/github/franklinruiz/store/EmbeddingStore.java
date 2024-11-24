@@ -91,4 +91,13 @@ public class EmbeddingStore<T extends Embeddable> {
         }
         return results;
     }
+
+    /**
+     * Returns all items stored in the EmbeddingStore.
+     *
+     * @return A list of all items currently in the store.
+     */
+    public List<T> getAllItems() {
+        return new ArrayList<>(items);
+    }
 }
