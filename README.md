@@ -117,7 +117,7 @@ import io.github.franklinruiz.store.EmbeddingMatch;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         // Initialize the embedder and store
         MiniLMEmbedder embedder = MiniLMEmbedder.getDefaultModel();
         EmbeddingStore<TextSegment> store = EmbeddingStore.initialize();
@@ -134,6 +134,55 @@ public class Main {
         // Print results
         for (EmbeddingMatch<TextSegment> match : results) {
             System.out.println("Matched Text: " + match.getItem().getText() + ", Similarity: " + match.getScore());
+        }
+    }
+}
+```
+
+```java
+import io.github.franklinruiz.encoder.MiniLMEmbedder;
+import io.github.franklinruiz.store.EmbeddingStore;
+import io.github.franklinruiz.store.TextSegment;
+import io.github.franklinruiz.store.EmbeddingMatch;
+
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // Initialize the embedder and store
+        MiniLMEmbedder embedder = MiniLMEmbedder.getDefaultModel();
+        EmbeddingStore<TextSegment> topicStore = EmbeddingStore.initialize();
+
+        // Add predefined topics with descriptions to the embedding store
+        topicStore.addItem(new TextSegment("Technology: Innovations, advancements in software, artificial intelligence."));
+        topicStore.addItem(new TextSegment("Health: Nutrition, physical and mental well-being, medical care."));
+        topicStore.addItem(new TextSegment("Education: Learning methods, teaching, and pedagogy."));
+        topicStore.addItem(new TextSegment("Sports: Football, basketball, sports competitions, and training."));
+
+        // List of articles to classify by topic
+        List<String> articles = List.of(
+                "Artificial intelligence is transforming the way businesses operate.",
+                "A balanced diet and daily exercise significantly improve mental health.",
+                "New pedagogical strategies are being implemented in schools across the world.",
+                "The Football World Cup is one of the most anticipated sports events of the year."
+        );
+
+        // Iterate over each article to suggest the most relevant topic
+        for (String article : articles) {
+            // Generate the embedding for the article
+            double[] articleEmbedding = embedder.embed(article);
+
+            // Find the most relevant topic using the embedding store (Top-1 result)
+            List<EmbeddingMatch<TextSegment>> matches = topicStore.findRelevant(articleEmbedding, 1);
+
+            // Print the article and the suggested topic
+            if (!matches.isEmpty()) {
+                EmbeddingMatch<TextSegment> bestMatch = matches.get(0);
+                System.out.println("Article: \"" + article + "\"");
+                System.out.println("Suggested Topic: " + bestMatch.getItem().getText());
+                System.out.println("Similarity: " + bestMatch.getScore());
+                System.out.println();
+            }
         }
     }
 }
