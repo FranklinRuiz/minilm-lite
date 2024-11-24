@@ -70,9 +70,7 @@ double[] vec1 = embedder.embed("Hello world!");
 double[] vec2 = embedder.embed("Hi there!");
 
 double similarity = CosineSimilarityUtil.calculate(vec1, vec2);
-System.out.
-
-println("Cosine Similarity: "+similarity);
+System.out.println("Cosine Similarity: "+similarity);
 ```
 
 ---
@@ -89,12 +87,8 @@ import io.github.franklinruiz.store.TextSegment;
 
 EmbeddingStore<TextSegment> store = EmbeddingStore.initialize();
 
-store.
-
-addItem(new TextSegment("Lugares turísticos en Perú"));
-        store.
-
-addItem(new TextSegment("Montañas de los Andes"));
+store.addItem(new TextSegment("Lugares turísticos en Perú"));
+store.addItem(new TextSegment("Montañas de los Andes"));
 ```
 
 #### Querying the Store
