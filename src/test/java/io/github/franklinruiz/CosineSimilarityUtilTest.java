@@ -1,6 +1,6 @@
-package com.minilm.lite;
+package io.github.franklinruiz;
 
-import com.minilm.lite.utils.CosineSimilarityUtil;
+import io.github.franklinruiz.utils.CosineSimilarityUtil;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

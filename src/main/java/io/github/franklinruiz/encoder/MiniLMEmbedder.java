@@ -1,4 +1,4 @@
-package com.minilm.lite.encoder;
+package io.github.franklinruiz.encoder;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,7 +30,6 @@ public class MiniLMEmbedder {
      * Creates a default instance of the MiniLMEmbedder using model and tokenizer files located in the resources directory.
      *
      * @return A new instance of MiniLMEmbedder initialized with the default model and tokenizer.
-     * @throws Exception If the model or tokenizer files cannot be found or loaded.
      */
     public static MiniLMEmbedder getDefaultModel() {
         ClassLoader classLoader = MiniLMEmbedder.class.getClassLoader();

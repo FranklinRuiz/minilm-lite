@@ -1,7 +1,7 @@
-package com.minilm.lite.store;
+package io.github.franklinruiz.store;
 
-import com.minilm.lite.encoder.MiniLMEmbedder;
-import com.minilm.lite.utils.CosineSimilarityUtil;
+import io.github.franklinruiz.encoder.MiniLMEmbedder;
+import io.github.franklinruiz.utils.CosineSimilarityUtil;
 
 import java.util.*;
 import java.util.function.ToDoubleFunction;

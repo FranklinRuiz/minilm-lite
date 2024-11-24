@@ -1,6 +1,6 @@
-package com.minilm.lite;
+package io.github.franklinruiz;
 
-import com.minilm.lite.encoder.OnnxBertEncoder;
+import io.github.franklinruiz.encoder.OnnxBertEncoder;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;

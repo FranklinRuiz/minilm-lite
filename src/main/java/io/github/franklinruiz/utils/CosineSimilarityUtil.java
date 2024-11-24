@@ -1,4 +1,4 @@
-package com.minilm.lite.utils;
+package io.github.franklinruiz.utils;
 
 /**
  * Utility class for calculating the cosine similarity between two vectors.

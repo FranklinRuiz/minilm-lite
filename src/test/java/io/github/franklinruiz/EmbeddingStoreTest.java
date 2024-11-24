@@ -1,9 +1,9 @@
-package com.minilm.lite;
+package io.github.franklinruiz;
 
-import com.minilm.lite.encoder.MiniLMEmbedder;
-import com.minilm.lite.store.EmbeddingMatch;
-import com.minilm.lite.store.EmbeddingStore;
-import com.minilm.lite.store.TextSegment;
+import io.github.franklinruiz.encoder.MiniLMEmbedder;
+import io.github.franklinruiz.store.EmbeddingMatch;
+import io.github.franklinruiz.store.EmbeddingStore;
+import io.github.franklinruiz.store.TextSegment;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

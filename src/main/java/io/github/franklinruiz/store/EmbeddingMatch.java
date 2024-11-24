@@ -1,4 +1,4 @@
-package com.minilm.lite.store;
+package io.github.franklinruiz.store;
 
 public class EmbeddingMatch<T> {
     private final T item;

@@ -1,4 +1,4 @@
-package com.minilm.lite.encoder;
+package io.github.franklinruiz.encoder;
 
 import ai.djl.huggingface.tokenizers.Encoding;
 import ai.djl.huggingface.tokenizers.HuggingFaceTokenizer;

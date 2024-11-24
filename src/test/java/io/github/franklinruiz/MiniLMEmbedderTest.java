@@ -1,6 +1,6 @@
-package com.minilm.lite;
+package io.github.franklinruiz;
 
-import com.minilm.lite.encoder.MiniLMEmbedder;
+import io.github.franklinruiz.encoder.MiniLMEmbedder;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

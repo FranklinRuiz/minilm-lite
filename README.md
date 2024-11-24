@@ -28,7 +28,7 @@ Add the following dependency to your `pom.xml` file:
 
 ```xml
 <dependency>
-    <groupId>com.minilm.lite</groupId>
+    <groupId>io.github.franklinruiz</groupId>
     <artifactId>minilm-lite</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -43,7 +43,7 @@ Add the following dependency to your `pom.xml` file:
 The library provides a default embedding model and tokenizer that can be loaded directly:
 
 ```java
-import com.minilm.lite.encoder.MiniLMEmbedder;
+import io.github.franklinruiz.encoder.MiniLMEmbedder;
 
 MiniLMEmbedder embedder = MiniLMEmbedder.getDefaultModel();
 ```
@@ -64,13 +64,15 @@ System.out.println("Embedding Length: " + embedding.length);
 Use `CosineSimilarityUtil` to compute the similarity between two embeddings:
 
 ```java
-import com.minilm.lite.utils.CosineSimilarityUtil;
+import io.github.franklinruiz.utils.CosineSimilarityUtil;
 
 double[] vec1 = embedder.embed("Hello world!");
 double[] vec2 = embedder.embed("Hi there!");
 
 double similarity = CosineSimilarityUtil.calculate(vec1, vec2);
-System.out.println("Cosine Similarity: " + similarity);
+System.out.
+
+println("Cosine Similarity: "+similarity);
 ```
 
 ---
@@ -82,13 +84,17 @@ Store embeddings and perform similarity-based queries with the `EmbeddingStore`.
 #### Adding Items to the Store
 
 ```java
-import com.minilm.lite.store.EmbeddingStore;
-import com.minilm.lite.store.TextSegment;
+import io.github.franklinruiz.store.EmbeddingStore;
+import io.github.franklinruiz.store.TextSegment;
 
 EmbeddingStore<TextSegment> store = EmbeddingStore.initialize();
 
-store.addItem(new TextSegment("Lugares turísticos en Perú"));
-store.addItem(new TextSegment("Montañas de los Andes"));
+store.
+
+addItem(new TextSegment("Lugares turísticos en Perú"));
+        store.
+
+addItem(new TextSegment("Montañas de los Andes"));
 ```
 
 #### Querying the Store
@@ -109,10 +115,10 @@ for (EmbeddingMatch<TextSegment> match : matches) {
 ### 5. Full Example: Semantic Search
 
 ```java
-import com.minilm.lite.encoder.MiniLMEmbedder;
-import com.minilm.lite.store.EmbeddingStore;
-import com.minilm.lite.store.TextSegment;
-import com.minilm.lite.store.EmbeddingMatch;
+import io.github.franklinruiz.encoder.MiniLMEmbedder;
+import io.github.franklinruiz.store.EmbeddingStore;
+import io.github.franklinruiz.store.TextSegment;
+import io.github.franklinruiz.store.EmbeddingMatch;
 
 import java.util.List;
 
@@ -156,7 +162,7 @@ public class Main {
 This library includes unit tests for all major components. Run the tests using Maven:
 
 ```bash
-  mvn test
+mvn test
 ```
 
 ### Test Coverage
