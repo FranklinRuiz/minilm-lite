@@ -30,7 +30,7 @@ Add the following dependency to your `pom.xml` file:
 <dependency>
     <groupId>io.github.franklinruiz</groupId>
     <artifactId>minilm-lite</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
@@ -107,7 +107,7 @@ for (EmbeddingMatch<TextSegment> match : matches) {
 ---
 
 ### 5. Full Example: Semantic Search
-
+#### Semantic Text Matching: Querying and Finding Relevant Results
 ```java
 import io.github.franklinruiz.encoder.MiniLMEmbedder;
 import io.github.franklinruiz.store.EmbeddingStore;
@@ -138,7 +138,7 @@ public class Main {
     }
 }
 ```
-
+#### Topic Classification for Articles Based on Semantic Similarity
 ```java
 import io.github.franklinruiz.encoder.MiniLMEmbedder;
 import io.github.franklinruiz.store.EmbeddingStore;
@@ -180,6 +180,105 @@ public class Main {
                 EmbeddingMatch<TextSegment> bestMatch = matches.get(0);
                 System.out.println("Article: \"" + article + "\"");
                 System.out.println("Suggested Topic: " + bestMatch.getItem().getText());
+                System.out.println("Similarity: " + bestMatch.getScore());
+                System.out.println();
+            }
+        }
+    }
+}
+```
+#### Duplicate Text Detection Using Semantic Similarity
+```java
+import io.github.franklinruiz.encoder.MiniLMEmbedder;
+import io.github.franklinruiz.store.EmbeddingStore;
+import io.github.franklinruiz.store.TextSegment;
+import io.github.franklinruiz.store.EmbeddingMatch;
+
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // Initialize the embedder and store
+        MiniLMEmbedder embedder = MiniLMEmbedder.getDefaultModel();
+        EmbeddingStore<TextSegment> textStore = EmbeddingStore.initialize();
+
+        // List of texts to analyze for duplicates
+        List<String> texts = List.of(
+                "The quick brown fox jumps over the lazy dog.",
+                "A fast, brown fox leaps over a sleeping dog.",
+                "Artificial intelligence is transforming industries worldwide.",
+                "AI is revolutionizing industries across the globe.",
+                "The quick brown fox jumps over the lazy dog.",
+                "Machine learning is a subset of artificial intelligence."
+        );
+
+        // Add texts to the embedding store
+        for (String text : texts) {
+            textStore.addItem(new TextSegment(text));
+        }
+
+        // Threshold for similarity (e.g., 0.90 means 90% similarity)
+        double similarityThreshold = 0.90;
+
+        // Find duplicates
+        System.out.println("Duplicate or similar texts:");
+        for (TextSegment segment : textStore.getAllItems()) {
+            List<EmbeddingMatch<TextSegment>> matches = textStore.findRelevant(
+                    embedder.embed(segment.getText()), texts.size());
+
+            for (EmbeddingMatch<TextSegment> match : matches) {
+                if (!match.getItem().equals(segment) && match.getScore() >= similarityThreshold) {
+                    System.out.println("\"" + segment.getText() + "\" is similar to \""
+                            + match.getItem().getText() + "\" with similarity: " + match.getScore());
+                }
+            }
+        }
+    }
+}
+```
+#### Sentiment Analysis of User Opinions Using Semantic Similarity
+```java
+import io.github.franklinruiz.encoder.MiniLMEmbedder;
+import io.github.franklinruiz.store.EmbeddingStore;
+import io.github.franklinruiz.store.TextSegment;
+import io.github.franklinruiz.store.EmbeddingMatch;
+
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // Initialize the embedder and store
+        MiniLMEmbedder embedder = MiniLMEmbedder.getDefaultModel();
+        EmbeddingStore<TextSegment> sentimentStore = EmbeddingStore.initialize();
+
+        // Add examples for each sentiment
+        sentimentStore.addItem(new TextSegment("This is absolutely fantastic! I love it.")); // Positive
+        sentimentStore.addItem(new TextSegment("I am very happy with this experience."));    // Positive
+        sentimentStore.addItem(new TextSegment("It was okay, not great but not terrible.")); // Neutral
+        sentimentStore.addItem(new TextSegment("Meh, it didn't really impress me."));        // Neutral
+        sentimentStore.addItem(new TextSegment("This is terrible, I hate it."));            // Negative
+        sentimentStore.addItem(new TextSegment("I am extremely disappointed."));            // Negative
+
+        // List of user opinions to analyze
+        List<String> opinions = List.of(
+                "I love this product, it's amazing!",
+                "It's alright, but I've seen better.",
+                "I hate how poorly this works.",
+                "This service is fantastic!",
+                "Not bad, but not great either."
+        );
+
+        // Analyze each opinion
+        for (String opinion : opinions) {
+            // Generate embedding for the opinion
+            double[] opinionEmbedding = embedder.embed(opinion);
+
+            // Find the closest sentiment category
+            List<EmbeddingMatch<TextSegment>> matches = sentimentStore.findRelevant(opinionEmbedding, 1);
+            if (!matches.isEmpty()) {
+                EmbeddingMatch<TextSegment> bestMatch = matches.get(0);
+                System.out.println("Opinion: \"" + opinion + "\"");
+                System.out.println("Classified as: \"" + bestMatch.getItem().getText() + "\"");
                 System.out.println("Similarity: " + bestMatch.getScore());
                 System.out.println();
             }
