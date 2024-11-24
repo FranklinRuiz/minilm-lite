@@ -315,22 +315,6 @@ mvn test
 
 ---
 
-## Requirements
-
-- **Java 17+**
-- **ONNX Runtime**: Efficient execution of the MiniLM model.
-- **Hugging Face Tokenizers**: Preprocessing for text tokenization.
-
-### Required Files
-
-Ensure the following files are included in your `resources` folder:
-- `all-minilm-l6-v2.onnx`
-- `all-minilm-l6-v2-tokenizer.json`
-
-These files are included with the library if installed via Maven.
-
----
-
 ## Contributing
 
 We welcome contributions! To contribute:
