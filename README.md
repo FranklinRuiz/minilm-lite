@@ -2,7 +2,7 @@
 # MiniLM-Lite: Lightweight Text Embedding Library
 [![Author](https://img.shields.io/badge/Author-Franklin%20Ruiz-blue)](#)
 [![Java](https://img.shields.io/badge/Java-17%2B-brightgreen)](#)
-[![ONNX Runtime](https://img.shields.io/badge/ONNX%20Runtime-1.14.1-blue)](#)
+[![ONNX Runtime](https://img.shields.io/badge/ONNX%20Runtime-1.20.0-blue)](#)
 [![Maven](https://img.shields.io/badge/Maven-Build%20Tool-yellowgreen)](#)
 [![all-MiniLM-L6-v2](https://img.shields.io/badge/Model-all--MiniLM--L6--v2-orange)](#)
 
