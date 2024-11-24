@@ -1,5 +1,10 @@
 
 # MiniLM-Lite: Lightweight Text Embedding Library
+[![Author](https://img.shields.io/badge/Author-Franklin%20Ruiz-blue)](#)
+[![Java](https://img.shields.io/badge/Java-17%2B-brightgreen)](#)
+[![ONNX Runtime](https://img.shields.io/badge/ONNX%20Runtime-1.14.1-blue)](#)
+[![Maven](https://img.shields.io/badge/Maven-Build%20Tool-yellowgreen)](#)
+[![all-MiniLM-L6-v2](https://img.shields.io/badge/Model-all--MiniLM--L6--v2-orange)](#)
 
 **MiniLM-Lite** is a Java library for generating text embeddings, computing similarity, and managing embedding stores for tasks such as text similarity, semantic search, and clustering. Built on top of ONNX Runtime and the `all-MiniLM-L6-v2` model, this library provides a simple interface for developers looking to integrate embedding generation into their Java projects.
 
