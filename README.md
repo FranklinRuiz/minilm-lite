@@ -19,7 +19,7 @@
 
 ### Prerequisites
 
-1. **Java 8+**: Ensure Java is installed and configured.
+1. **Java 17+**: Ensure Java is installed and configured.
 2. **Maven**: This library is distributed via Maven.
 
 ### Maven Dependency
