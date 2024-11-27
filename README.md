@@ -17,6 +17,7 @@
 - **Embedding Storage**: Store and retrieve relevant items using an embedding store with similarity-based scoring.
 - **Simple API**: Easy-to-use interfaces for embedding generation and similarity matching.
 - **Optimized for Performance**: Powered by ONNX Runtime for efficient inference.
+- **Text Classification**: Automatically categorize user queries based on embedding similarity, suitable for diverse use cases.
 
 ---
 
@@ -351,6 +352,72 @@ Classified as: "It was okay, not great but not terrible."
 Similarity: 0.7377373708005006
 ```
 
+#### Text Classification for Tech Support Queries Using Embeddings
+
+```java
+import io.github.franklinruiz.classifier.EmbeddingClassifier;
+import io.github.franklinruiz.classifier.TextClassifier;
+import io.github.franklinruiz.encoder.MiniLMEmbedder;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Main {
+    // Enum defining the different categories of tech support
+    enum TechSupportCategory {
+        PASSWORD_RESET,      // Issues related to password recovery
+        SOFTWARE_BUG,        // Issues regarding software bugs
+        INSTALLATION_GUIDE,  // Questions about how to install software
+        GENERAL_QUESTIONS;   // General inquiries about technical support
+    }
+
+    public static void main(String[] args) {
+
+        // Example of how to build the classifier with predefined examples
+        Map<TechSupportCategory, List<String>> examples = new HashMap<>();
+
+        // Adding examples for each tech support category
+        examples.put(TechSupportCategory.PASSWORD_RESET, Arrays.asList(
+                "I forgot my password",
+                "How can I reset my password?",
+                "I can't log in, help me reset it"
+        ));
+        examples.put(TechSupportCategory.SOFTWARE_BUG, Arrays.asList(
+                "The application keeps crashing",
+                "I found a bug in the software",
+                "There is an error when I try to open the app"
+        ));
+        examples.put(TechSupportCategory.INSTALLATION_GUIDE, Arrays.asList(
+                "How do I install the software?",
+                "I need help with installation",
+                "Where can I find the installation guide?"
+        ));
+        examples.put(TechSupportCategory.GENERAL_QUESTIONS, Arrays.asList(
+                "What are the system requirements?",
+                "Where can I get support for this software?",
+                "Can I upgrade to the latest version?"
+        ));
+
+        // Initialize the embedder
+        MiniLMEmbedder embedder = MiniLMEmbedder.getDefaultModel();
+
+        // Create the classifier using the model and the predefined examples
+        TextClassifier<TechSupportCategory> classifier = new EmbeddingClassifier<>(embedder, examples);
+
+        // Classifying a new user input (example: asking for help with a password)
+        List<TechSupportCategory> categories = classifier.classify("I need help with my password");
+
+        System.out.println(categories);
+    }
+}
+```
+```bash
+# Result
+[PASSWORD_RESET]
+```
+
 ---
 
 ## Project Structure
@@ -360,6 +427,7 @@ Similarity: 0.7377373708005006
 - **`CosineSimilarityUtil`**: Computes cosine similarity between embeddings.
 - **`EmbeddingStore`**: Stores embeddings and retrieves relevant items based on similarity scoring.
 - **`TextSegment`**: Wrapper for storing textual data in the embedding store.
+- **`EmbeddingClassifier`**: Uses the generated embeddings to classify text into predefined categories based on similarity.
 
 ---
 

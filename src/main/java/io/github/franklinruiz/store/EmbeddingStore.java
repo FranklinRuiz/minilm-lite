@@ -75,7 +75,7 @@ public class EmbeddingStore<T extends Embeddable> {
     public List<EmbeddingMatch<T>> findRelevant(double[] queryEmbedding, int maxResults) {
         // Priority queue to maintain the top relevant matches, sorted by score in descending order.
         PriorityQueue<EmbeddingMatch<T>> matches = new PriorityQueue<>(
-                Comparator.comparingDouble((ToDoubleFunction<EmbeddingMatch<T>>) EmbeddingMatch::getScore).reversed()
+                Comparator.comparingDouble((ToDoubleFunction<EmbeddingMatch<T>>) EmbeddingMatch::score).reversed()
         );
 
         // Compute similarity for each embedding in the store.
