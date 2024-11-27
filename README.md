@@ -113,6 +113,7 @@ for (EmbeddingMatch<TextSegment> match : matches) {
 
 ### 5. Full Example: Semantic Search
 #### Semantic Text Matching: Querying and Finding Relevant Results
+
 ```java
 import io.github.franklinruiz.encoder.MiniLMEmbedder;
 import io.github.franklinruiz.store.EmbeddingStore;
@@ -138,12 +139,20 @@ public class Main {
 
         // Print results
         for (EmbeddingMatch<TextSegment> match : results) {
-            System.out.println("Matched Text: " + match.getItem().getText() + ", Similarity: " + match.getScore());
+            System.out.println("Matched Text: " + match.item().getText() + ", Similarity: " + match.score());
         }
     }
 }
 ```
+
+```bash
+# Resultado
+Matched Text: Paris is the capital of France., Similarity: 0.8560696763850919
+Matched Text: The Eiffel Tower is located in Paris., Similarity: 0.41220432645634725
+```
+
 #### Topic Classification for Articles Based on Semantic Similarity
+
 ```java
 import io.github.franklinruiz.encoder.MiniLMEmbedder;
 import io.github.franklinruiz.store.EmbeddingStore;
@@ -184,15 +193,35 @@ public class Main {
             if (!matches.isEmpty()) {
                 EmbeddingMatch<TextSegment> bestMatch = matches.get(0);
                 System.out.println("Article: \"" + article + "\"");
-                System.out.println("Suggested Topic: " + bestMatch.getItem().getText());
-                System.out.println("Similarity: " + bestMatch.getScore());
+                System.out.println("Suggested Topic: " + bestMatch.item().getText());
+                System.out.println("Similarity: " + bestMatch.score());
                 System.out.println();
             }
         }
     }
 }
 ```
+```bash
+# Resultado
+Article: "Artificial intelligence is transforming the way businesses operate."
+Suggested Topic: Technology: Innovations, advancements in software, artificial intelligence.
+Similarity: 0.5146333825278299
+
+Article: "A balanced diet and daily exercise significantly improve mental health."
+Suggested Topic: Health: Nutrition, physical and mental well-being, medical care.
+Similarity: 0.45945618435822316
+
+Article: "New pedagogical strategies are being implemented in schools across the world."
+Suggested Topic: Education: Learning methods, teaching, and pedagogy.
+Similarity: 0.599657797185379
+
+Article: "The Football World Cup is one of the most anticipated sports events of the year."
+Suggested Topic: Sports: Football, basketball, sports competitions, and training.
+Similarity: 0.43951509236857456
+```
+
 #### Duplicate Text Detection Using Semantic Similarity
+
 ```java
 import io.github.franklinruiz.encoder.MiniLMEmbedder;
 import io.github.franklinruiz.store.EmbeddingStore;
@@ -232,16 +261,24 @@ public class Main {
                     embedder.embed(segment.getText()), texts.size());
 
             for (EmbeddingMatch<TextSegment> match : matches) {
-                if (!match.getItem().equals(segment) && match.getScore() >= similarityThreshold) {
+                if (!match.item().equals(segment) && match.score() >= similarityThreshold) {
                     System.out.println("\"" + segment.getText() + "\" is similar to \""
-                            + match.getItem().getText() + "\" with similarity: " + match.getScore());
+                            + match.item().getText() + "\" with similarity: " + match.score());
                 }
             }
         }
     }
 }
 ```
+
+```bash
+# Duplicate or similar texts:
+"The quick brown fox jumps over the lazy dog." is similar to "The quick brown fox jumps over the lazy dog." with similarity: 0.9999999999999999
+"The quick brown fox jumps over the lazy dog." is similar to "The quick brown fox jumps over the lazy dog." with similarity: 0.9999999999999999
+```
+
 #### Sentiment Analysis of User Opinions Using Semantic Similarity
+
 ```java
 import io.github.franklinruiz.encoder.MiniLMEmbedder;
 import io.github.franklinruiz.store.EmbeddingStore;
@@ -283,13 +320,35 @@ public class Main {
             if (!matches.isEmpty()) {
                 EmbeddingMatch<TextSegment> bestMatch = matches.get(0);
                 System.out.println("Opinion: \"" + opinion + "\"");
-                System.out.println("Classified as: \"" + bestMatch.getItem().getText() + "\"");
-                System.out.println("Similarity: " + bestMatch.getScore());
+                System.out.println("Classified as: \"" + bestMatch.item().getText() + "\"");
+                System.out.println("Similarity: " + bestMatch.score());
                 System.out.println();
             }
         }
     }
 }
+```
+```bash
+# Resultado
+Opinion: "I love this product, it's amazing!"
+Classified as: "This is absolutely fantastic! I love it."
+Similarity: 0.5715483459053936
+
+Opinion: "It's alright, but I've seen better."
+Classified as: "It was okay, not great but not terrible."
+Similarity: 0.5547731935863001
+
+Opinion: "I hate how poorly this works."
+Classified as: "This is terrible, I hate it."
+Similarity: 0.5619213813474866
+
+Opinion: "This service is fantastic!"
+Classified as: "This is absolutely fantastic! I love it."
+Similarity: 0.5332713832611117
+
+Opinion: "Not bad, but not great either."
+Classified as: "It was okay, not great but not terrible."
+Similarity: 0.7377373708005006
 ```
 
 ---
