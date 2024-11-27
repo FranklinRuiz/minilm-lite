@@ -146,7 +146,7 @@ public class Main {
 ```
 
 ```bash
-# Resultado
+# Result
 Matched Text: Paris is the capital of France., Similarity: 0.8560696763850919
 Matched Text: The Eiffel Tower is located in Paris., Similarity: 0.41220432645634725
 ```
@@ -202,7 +202,7 @@ public class Main {
 }
 ```
 ```bash
-# Resultado
+# Result
 Article: "Artificial intelligence is transforming the way businesses operate."
 Suggested Topic: Technology: Innovations, advancements in software, artificial intelligence.
 Similarity: 0.5146333825278299
@@ -272,7 +272,7 @@ public class Main {
 ```
 
 ```bash
-# Duplicate or similar texts:
+# Duplicate or similar texts
 "The quick brown fox jumps over the lazy dog." is similar to "The quick brown fox jumps over the lazy dog." with similarity: 0.9999999999999999
 "The quick brown fox jumps over the lazy dog." is similar to "The quick brown fox jumps over the lazy dog." with similarity: 0.9999999999999999
 ```
@@ -329,7 +329,7 @@ public class Main {
 }
 ```
 ```bash
-# Resultado
+# Result
 Opinion: "I love this product, it's amazing!"
 Classified as: "This is absolutely fantastic! I love it."
 Similarity: 0.5715483459053936
