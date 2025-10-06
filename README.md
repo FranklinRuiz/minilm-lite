@@ -35,7 +35,7 @@ Add the following dependency to your `pom.xml` file:
 <dependency>
     <groupId>io.github.franklinruiz</groupId>
     <artifactId>minilm-lite</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
